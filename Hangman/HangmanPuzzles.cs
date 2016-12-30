@@ -9,25 +9,24 @@ namespace GregoryDoud.TIY.Hangman {
 	public class HangmanPuzzles {
 
 		const string hangmanPuzzlesFile = "HangmanPuzzles.txt";
+		static IEnumerable<string> puzzles = null;
 		static Random rnd = new Random(DateTime.Now.GetHashCode());
 
 		public static string GetRandomPuzzle() {
-#if DEBUG
-			var puzzles = System.IO.File.ReadAllLines(@"..\..\" + hangmanPuzzlesFile);
-#else
-			var puzzles = System.IO.File.ReadAllLines(hangmanPuzzlesFile);
-#endif
-			var nbrPuzzles = puzzles.Length;
+			var nbrPuzzles = puzzles.Count();
 			return puzzles.ElementAt(rnd.Next(nbrPuzzles)).ToUpper();
 		}
 
 		public static string GetSpecificPuzzle(int pos) {
-#if DEBUG
-			var puzzles = System.IO.File.ReadAllLines(@"..\..\" + hangmanPuzzlesFile);
-#else
-			var puzzles = System.IO.File.ReadAllLines(hangmanPuzzlesFile);
-#endif
 			return puzzles.ElementAt(pos).ToUpper();
+		}
+
+		static HangmanPuzzles() {
+#if DEBUG
+			puzzles = System.IO.File.ReadAllLines(@"..\..\" + hangmanPuzzlesFile);
+#else
+			puzzles = System.IO.File.ReadAllLines(hangmanPuzzlesFile);
+#endif
 		}
 	}
 }
