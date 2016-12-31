@@ -16,6 +16,7 @@ namespace GregoryDoud.TIY.Hangman {
 			while (!hm.IsGameOver()) {
 				var letter = AskForLetter();
 				var puzzleDisplay = hm.LetterGuess(letter);
+				Display();
 				Display(puzzleDisplay);
 			}
 			Display((hm.IsWinner() ? "Winner!" : "Loser."));
@@ -23,7 +24,11 @@ namespace GregoryDoud.TIY.Hangman {
 		}
 		string AskForLetter() {
 			Console.Write("Enter a letter: ");
-			var letter = Console.ReadLine().Substring(0, 1).ToUpper();
+			var letter = string.Empty;
+			do {
+				letter = Console.ReadLine();
+			} while (letter.Length == 0);
+			letter = letter.Substring(0, 1).ToUpper();
 			return letter;
 		}
 
