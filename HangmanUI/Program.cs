@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GregoryDoud.TIY.Hangman {
 
-	class Program {
+	public class Program {
 
 		void PlayHangman() {
 			Hangman hm = new Hangman();
@@ -54,9 +54,11 @@ namespace GregoryDoud.TIY.Hangman {
 			Display("Do you want to quit? y/N: ");
 			return Console.ReadLine().ToUpper().StartsWith("Y");
 		}
-
-		static void Main(string[] args) {
+		
+		public static void Main(string[] args) {
 			new Program().Run();
 		}
+
+
 	}
 }
